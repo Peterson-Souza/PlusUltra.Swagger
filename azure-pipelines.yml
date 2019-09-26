@@ -36,7 +36,7 @@ jobs:
       versioningScheme: off
 
   - task: DotNetCoreCLI@2
-    displayName: 'Dotnet Push'
+    displayName: 'Dotnet Push GitHub'
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
