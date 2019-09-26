@@ -41,4 +41,4 @@ jobs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
       nuGetFeedType: 'external'
-      publishFeedCredentials: 'GitHub'
+      publishFeedCredentials: 'nuget.org'
