@@ -34,11 +34,10 @@ jobs:
     inputs:
       command: pack
       versioningScheme: off
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Dotnet Push nuget.org'
+  - task: NuGetCommand@2
     inputs:
       command: 'push'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'external'
       publishFeedCredentials: 'nuget.org'
+      verbosityPush: 'Normal'
