@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.OpenApi.Models;
 using PlusUltra.Swagger.Filters;
 using Swashbuckle.AspNetCore.Filters;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
@@ -14,13 +14,11 @@ namespace PlusUltra.Swagger.Extensions
 {
     public static class SwaggerExtensions
     {
-        public static IServiceCollection AddDocumentation(this IServiceCollection services, Info info, bool userFluentValidators = false, Action<SwaggerGenOptions> configuration = null)
+        public static IServiceCollection AddDocumentation(this IServiceCollection services, OpenApiInfo info, Action<SwaggerGenOptions> configuration = null)
         {
             services.AddSwaggerGen(
                 options =>
                 {
-                    options.DescribeAllEnumsAsStrings();
-                    options.DescribeStringEnumsInCamelCase();
                     options.DescribeAllParametersInCamelCase();
 
                     // resolve the IApiVersionDescriptionProvider service
@@ -33,9 +31,6 @@ namespace PlusUltra.Swagger.Extensions
                     {
                         options.SwaggerDoc(description.GroupName, CreateInfoForApiVersion(info, description));
                     }
-
-                    if (userFluentValidators)
-                        options.AddFluentValidationRules();
 
                     // integrate xml comments
                     IncludeXMLS(options);
@@ -71,7 +66,7 @@ namespace PlusUltra.Swagger.Extensions
             return app;
         }
 
-        static Info CreateInfoForApiVersion(Info info, ApiVersionDescription description)
+        static OpenApiInfo CreateInfoForApiVersion(OpenApiInfo info, ApiVersionDescription description)
         {
             info.Version = description.ApiVersion.ToString();
 
