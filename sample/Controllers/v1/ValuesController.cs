@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace sample.Controllers
+namespace sample.Controllers.v1
 {
-    [Route("api/[controller]")]
     [ApiController]
-    [Authorize()]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class ValuesController : ControllerBase
     {
         // GET api/values

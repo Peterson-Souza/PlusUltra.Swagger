@@ -61,10 +61,11 @@ namespace sample
                 app.UseHsts();
             }
 
+            app.UseRouting();
+            
             app.UseHttpsRedirection();
             app.UseDocumentation(provider);
 
-            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

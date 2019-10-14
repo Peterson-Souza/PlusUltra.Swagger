@@ -35,8 +35,10 @@ namespace PlusUltra.Swagger.Extensions
                     // integrate xml comments
                     IncludeXMLS(options);
 
-                    options.OperationFilter<AddResponseHeadersFilter>(); 
+                    options.OperationFilter<AddResponseHeadersFilter>();
                     options.OperationFilter<AuthResponsesOperationFilter>();
+                    // add a custom operation filter which sets default values
+                    options.OperationFilter<SwaggerDefaultValues>();
                     
                     configuration?.Invoke(options);
                 });
