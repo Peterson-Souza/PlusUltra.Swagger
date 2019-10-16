@@ -34,8 +34,11 @@ namespace PlusUltra.Swagger.Filters
             // REF: https://github.com/domaindrivendev/Swashbuckle.AspNetCore/pull/413
             foreach (var parameter in operation.Parameters)
             {
-                var description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
+                var description = apiDescription.ParameterDescriptions.FirstOrDefault(p => p.Name == parameter.Name);
 
+                if (description == null)
+                    continue; 
+                    
                 if (parameter.Description == null)
                 {
                     parameter.Description = description.ModelMetadata?.Description;
