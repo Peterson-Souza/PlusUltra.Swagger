@@ -45,7 +45,8 @@ namespace sample
 
             app.UseRouting();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+            app.UsePathBase("/v1/sample");
             app.UseDocumentation(configuration: c =>
             {
                 c.DocumentTitle = "Demo Unversioned";

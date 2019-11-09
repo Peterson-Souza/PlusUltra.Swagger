@@ -83,8 +83,7 @@ namespace PlusUltra.Swagger.Extensions
                 // build a swagger endpoint for each discovered API version
                 foreach (var description in provider.ApiVersionDescriptions)
                 {
-                    c.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-                    c.RoutePrefix = string.Empty;
+                    c.SwaggerEndpoint($"./swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                 }
 
                 configuration?.Invoke(c);
@@ -100,7 +99,7 @@ namespace PlusUltra.Swagger.Extensions
 
             app.UseReDoc(c =>
             {
-                c.SpecUrl($"/swagger/{groupName}/swagger.json");
+                c.SpecUrl($"../swagger/{groupName}/swagger.json");
                 c.RoutePrefix = "docs";
                 c.HideHostname();
                 c.HideDownloadButton();
