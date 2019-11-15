@@ -101,14 +101,11 @@ namespace PlusUltra.Swagger.Extensions
             {
                 c.SpecUrl($"../swagger/{groupName}/swagger.json");
                 c.RoutePrefix = "docs";
-                c.HideHostname();
                 c.HideDownloadButton();
                 c.ExpandResponses("200,201");
                 c.RequiredPropsFirst();
-                c.NoAutoAuth();
                 c.PathInMiddlePanel();
                 c.NativeScrollbars();
-                c.OnlyRequiredInSamples();
                 c.SortPropsAlphabetically();
 
                 configuration?.Invoke(c);
