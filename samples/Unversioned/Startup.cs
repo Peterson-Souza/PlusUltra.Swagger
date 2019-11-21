@@ -27,6 +27,9 @@ namespace sample
             services.AddDocumentation(new OpenApiInfo
             {
                 Title = "Demo Unversioned"
+            }, configuration: c =>
+            {
+                c.DocumentFilter<XLogoDocumentFilter>();
             });
         }
 
